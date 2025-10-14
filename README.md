@@ -1,6 +1,11 @@
 
 # Streakly - Habit Tracker App 📱
 
+Developers: Ntsako Vicario Maswanganyi (st10220315)
+            Tumelo Neo Mahlaela (st10317649)
+            Ponani Kevin Chamango (st10057836)
+
+
 Video link of app demonstration: 
 
 <div align="center">
