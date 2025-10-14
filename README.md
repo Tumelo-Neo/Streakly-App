@@ -330,45 +330,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 [Download](releases/)
 
 </div>
-```
 
-## 🖼️ Suggested Images to Add
-
-1. **App Screenshots**: 
-   - Main habit list screen
-   - Habit creation form
-   - Analytics dashboard
-   - Settings screen
-
-2. **Architecture Diagrams**:
-   - System architecture
-   - Database schema
-   - CI/CD pipeline flow
-
-3. **Badges**: 
-   - Build status
-   - Code coverage
-   - License
-   - Download counts
-
-## 📝 Customization Instructions
-
-1. **Replace placeholder content** with your actual:
-   - GitHub username in URLs
-   - App screenshots
-   - Specific feature details
-   - Team acknowledgments
-
-2. **Add actual images** by:
-   - Taking screenshots of your app
-   - Creating architecture diagrams
-   - Adding your app icon/logo
-
-3. **Update the badges** with your actual repository information
-
-4. **Add specific technical details** about:
-   - Your unique features
-   - Technical challenges solved
-   - Performance optimizations
-
-This README provides a comprehensive overview that meets all the requirements from your screenshot while showcasing your app's purpose, design considerations, and GitHub utilization effectively.
