@@ -1,0 +1,113 @@
+<resources>
+<string name="app_name">Streakly</string>
+<string name="home_title">Home</string>
+<string name="habits_list_description">List of your habits</string>
+<string name="add_habit_button_description">Add new habit</string>
+<string name="build_better_habits">Build Better Habits</string>
+
+    <!-- Add Habit Screen Strings -->
+<string name="add_new_habit">Add New Habit</string>
+<string name="habit_title">Habit Title</string>
+<string name="category">Category (e.g., Health, Learning, Productivity)</string>
+<string name="frequency">Frequency</string>
+<string name="daily">Daily</string>
+<string name="weekly">Weekly</string>
+<string name="custom">Custom</string>
+<string name="reminder_time">Reminder Time</string>
+<string name="set_reminder_time">Set Reminder Time</string>
+<string name="start_date">Start Date</string>
+<string name="select_start_date">Select Start Date</string>
+<string name="notes">Notes (optional)</string>
+<string name="save_habit">Save Habit</string>
+<string name="cancel">Cancel</string>
+
+<string name="analytics">Analytics</string>
+<string name="total_habits">Total Habits</string>
+<string name="completed_today">Completed Today</string>
+<string name="streak_stats">Streak Statistics</string>
+<string name="longest_streak">Longest Streak</string>
+<string name="current_streak">Current Streak</string>
+<string name="total_completions">Total Completions</string>
+<string name="habit_progress">Habit Progress</string>
+<string name="charts_coming_soon">Charts &amp; Detailed Analytics Coming Soon!</string>
+
+<string name="days_format">%d days</string>
+
+<string name="completion_rate">Completion Rate</string>
+<string name="weekly_progress">Weekly Progress</string>
+<string name="habit_distribution">Habit Distribution</string>
+<string name="streak_leaderboard">Streak Leaderboard</string>
+<string name="days">days</string>
+
+
+<string name="placeholder_number">0</string>
+<string name="placeholder_percentage">0%</string>
+
+<string name="settings">Settings</string>
+<string name="app_settings">App Settings</string>
+<string name="notifications">Notifications</string>
+<string name="dark_mode">Dark Mode</string>
+<string name="data_management">Data Management</string>
+<string name="export_data">Export Data</string>
+<string name="clear_all_data">Clear All Data</string>
+<string name="about">About</string>
+<string name="version">Version</string>
+<string name="rate_app">Rate App</string>
+<string name="data_exported">Data exported successfully!</string>
+<string name="clear_data_confirmation">Are you sure you want to clear all data? This cannot be undone.</string>
+<string name="data_cleared">All data has been cleared.</string>
+
+<string name="no_habits_message">No habits yet!\nTap the + button to add your first habit.</string>
+<string name="habit_completed">%s completed! 🔥</string>
+<string name="delete_habit">Delete Habit</string>
+<string name="delete_habit_confirmation">Delete \"%s\"?</string>
+<string name="habit_deleted">Habit deleted</string>
+
+    <!-- Authentication Strings -->
+<string name="login">Login</string>
+<string name="register">Register</string>
+<string name="create_account">Create Account</string>
+<string name="full_name">Full Name</string>
+<string name="email">Email</string>
+<string name="password">Password</string>
+<string name="confirm_password">Confirm Password</string>
+<string name="forgot_password">Forgot Password?</string>
+<string name="already_have_account">Already have an account? Login</string>
+<string name="dont_have_account">Don\'t have an account? Register</string>
+
+    <!-- Add this string to your strings.xml -->
+<string name="export_success">Data exported successfully! %d habits exported.</string>
+<string name="clear_data_success">All data cleared successfully! %d habits removed.</string>
+<string name="app_stats">You have %d habits with %d total streaks!</string>
+
+    <!-- Add these to your existing strings.xml -->
+    <string name="logout">Logout</string>
+    <string name="account">Account</string>
+    <string name="current_user">Current User</string>
+
+    <string name="default_web_client_id">AIzaSyBU0fgcZxM0McWvrXmmnbFMDTza43zYNKU</string>
+
+    <string name="habit_completed_toast">Completed: %s! 🔥</string>
+    <string name="modify_completion_message">Use habit detail to modify completion</string>
+
+    <string name="progress_daily">Daily Progress</string>
+    <string name="progress_weekly">Weekly Progress</string>
+    <string name="progress_custom">Custom Progress</string>
+
+    <string name="completion_history">Completion History</string>
+    <string name="last_7_days">Last 7 Days</string>
+    <string name="last_30_days">Last 30 Days</string>
+    <string name="completion_rate_history">Completion Rate Over Time</string>
+    <string name="no_completion_data">No completion data available</string>
+
+    <string name="category_distribution">Category Distribution</string>
+    <string name="uncategorized">Uncategorized</string>
+    <string name="no_category_data">No category data available</string>
+
+    
+    <string name="month_year_format">%s %d</string>
+    <string name="no_completion_history">No completion history yet</string>
+    <string name="completed">Completed</string>
+    <string name="missed">Missed</string>
+    <string name="today">Today</string>
+    </resources>

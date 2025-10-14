@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardBackgroundColor="?android:attr/colorBackground"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Quick Complete Checkbox -->
+        <CheckBox
+            android:id="@+id/cbComplete"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:buttonTint="?attr/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Circular Progress Ring Container -->
+        <FrameLayout
+            android:id="@+id/progressContainer"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cbComplete"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Background Circle -->
+            <ProgressBar
+                android:id="@+id/progressBackground"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="100"
+                android:progressDrawable="@drawable/circular_progress_background" />
+
+            <!-- Progress Ring -->
+            <ProgressBar
+                android:id="@+id/progressRing"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="75"
+                android:progressDrawable="@drawable/circular_progress" />
+
+            <!-- Streak Count in Center -->
+            <TextView
+                android:id="@+id/tvStreak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="7"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <!-- Habit Title -->
+        <TextView
+            android:id="@+id/tvHabitTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Exercise"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tvHabitFrequency"
+            app:layout_constraintEnd_toStartOf="@id/ivArrow"
+            app:layout_constraintStart_toEndOf="@id/progressContainer"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Habit Frequency -->
+        <TextView
+            android:id="@+id/tvHabitFrequency"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Daily"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivArrow"
+            app:layout_constraintStart_toEndOf="@id/progressContainer"
+            app:layout_constraintTop_toBottomOf="@id/tvHabitTitle" />
+
+        <!-- Arrow for detail view -->
+        <ImageView
+            android:id="@+id/ivArrow"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_arrow_forward"
+            app:tint="?android:attr/textColorSecondary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

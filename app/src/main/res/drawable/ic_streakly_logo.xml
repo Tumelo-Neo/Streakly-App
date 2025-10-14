@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?attr/colorPrimary">  <!-- Added tint for theme consistency -->
+
+    <path
+        android:fillColor="@android:color/white"
+    android:pathData="M12,1L15,9L23,10L17,15L19,23L12,19L5,23L7,15L1,10L9,9Z"/>
+    <path
+        android:fillColor="#80FFFFFF"
+    android:pathData="M12,3L14.5,9.5L21,10.5L16,15L18,21L12,17.5L6,21L8,15L3,10.5L9.5,9.5Z"/>
+</vector>

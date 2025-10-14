@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="teal_700">#018786</color>
+
+    <color name="dark_teal">#01333C</color>
+    <color name="medium_teal">#02454F</color>
+    <color name="teal_200">#03DAC5</color>
+
+    <!-- Add these for better light mode support -->
+    <color name="light_surface">#FFFFFFFF</color>
+    <color name="light_on_surface">#FF000000</color>
+    <color name="light_card_background">#FFF5F5F5</color>
+
+    <!-- Heatmap colors -->
+    <color name="heatmap_level_0">#E0E0E0</color>
+    <color name="heatmap_level_1">#4CAF50</color>
+    <color name="heatmap_level_2">#388E3C</color>
+    <color name="heatmap_level_3">#2E7D32</color>
+
+
+</resources>
