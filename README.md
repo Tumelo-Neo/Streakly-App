@@ -1,7 +1,7 @@
-I'll help you create a comprehensive README file for your Streakly habit tracker app. Here's a professional README template you can use:
 
-```markdown
 # Streakly - Habit Tracker App 📱
+
+Video link of app demonstration: https://youtu.be/eMeFkdI_a40
 
 <div align="center">
 
