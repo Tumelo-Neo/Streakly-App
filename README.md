@@ -1,7 +1,7 @@
 
 # Streakly - Habit Tracker App 📱
 
-Video link of app demonstration: https://youtu.be/eMeFkdI_a40
+Video link of app demonstration: 
 
 <div align="center">
 
