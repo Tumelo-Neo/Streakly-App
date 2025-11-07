@@ -2,7 +2,9 @@ package com.example.streakly
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.widget.Switch
@@ -10,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.streakly.data.HabitManager
 import com.example.streakly.entities.Habit
@@ -37,6 +40,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        applySavedLanguage()
         ThemeManager.applyTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -44,6 +48,8 @@ class SettingsActivity : AppCompatActivity() {
         initializeViews()
         setupBottomNavigation()
         setupClickListeners()
+        setupLanguageSelection()
+        setupOfflineInfo()
         loadSettings()
         setupGoogleSignIn()
         updateCloudSyncUI()
@@ -144,6 +150,38 @@ class SettingsActivity : AppCompatActivity() {
         findViewById<android.view.View>(R.id.btnLogout).setOnClickListener {
             showLogoutConfirmation()
         }
+
+        // Manual Sync option
+        findViewById<android.view.View>(R.id.btnManualSync)?.setOnClickListener {
+            manualSync()
+        }
+    }
+
+    private fun manualSync() {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                HabitManager.syncOfflineActions()
+                setupOfflineInfo() // Refresh status
+                Toast.makeText(this@SettingsActivity, "Sync completed", Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                Toast.makeText(this@SettingsActivity, "Sync failed", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun setupOfflineInfo() {
+        val pendingCount = HabitManager.getPendingActionsCount()
+        val isOnline = HabitManager.isOnline()
+        val offlineStatusText = if (!isOnline) {
+            "🔴 Offline - $pendingCount changes pending sync"
+        } else if (pendingCount > 0) {
+            "🟡 Online - $pendingCount changes syncing..."
+        } else {
+            "🟢 Online - All changes synced"
+        }
+
+        // Update offline status text if the view exists
+        findViewById<TextView>(R.id.tvOfflineStatus)?.text = offlineStatusText
     }
 
     private fun handleCloudSync() {
@@ -275,6 +313,7 @@ class SettingsActivity : AppCompatActivity() {
         super.onResume()
         updateCloudSyncUI()
         displayUserInfo()
+        setupOfflineInfo()
     }
 
     private fun loadSettings() {
@@ -490,5 +529,78 @@ class SettingsActivity : AppCompatActivity() {
         } else {
             tvCurrentUser.text = "Not logged in"
         }
+    }
+
+
+    private fun setupLanguageSelection() {
+        // Find the language button and set click listener
+        val languageButton = findViewById<android.view.View>(R.id.btnLanguage)
+        languageButton?.setOnClickListener {
+            showLanguageSelectionDialog()
+        }
+    }
+
+    private fun showLanguageSelectionDialog() {
+        val languages = arrayOf(
+            getString(R.string.english),
+            getString(R.string.spanish),
+            getString(R.string.afrikaans),
+            getString(R.string.zulu)
+        )
+        val languageCodes = arrayOf("en", "es", "af", "zu")
+
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.select_language))
+            .setItems(languages) { _, which ->
+                changeAppLanguage(languageCodes[which])
+            }
+            .setNegativeButton(getString(R.string.cancel), null)
+            .show()
+    }
+
+    private fun changeAppLanguage(languageCode: String) {
+        val sharedPreferences = getSharedPreferences("app_settings", MODE_PRIVATE)
+        sharedPreferences.edit().putString("app_language", languageCode).apply()
+
+        // Show restart message
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.language_changed))
+            .setMessage(getString(R.string.restart_app_message))
+            .setPositiveButton("OK") { _, _ ->
+                // Restart the app
+                restartApp()
+            }
+            .setNegativeButton(getString(R.string.cancel), null)
+            .show()
+    }
+
+    private fun restartApp() {
+        val intent = Intent(this, SplashActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+        finish()
+    }
+
+    private fun applySavedLanguage() {
+        val sharedPreferences = getSharedPreferences("app_settings", MODE_PRIVATE)
+        val savedLanguage = sharedPreferences.getString("app_language", "en") ?: "en"
+
+        val locale = Locale(savedLanguage)
+        Locale.setDefault(locale)
+
+        val resources = resources
+        val configuration = Configuration(resources.configuration)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            configuration.setLocale(locale)
+        } else {
+            configuration.locale = locale
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            applicationContext.createConfigurationContext(configuration)
+        }
+
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 }

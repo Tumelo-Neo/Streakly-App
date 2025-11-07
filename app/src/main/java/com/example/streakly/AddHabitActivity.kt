@@ -3,6 +3,8 @@ package com.example.streakly
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.*
@@ -37,6 +39,7 @@ class AddHabitActivity : AppCompatActivity() {
     private val dayAbbreviations = arrayOf("S", "M", "T", "W", "T", "F", "S")
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        applySavedLanguage()
         ThemeManager.applyTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_habit)
@@ -249,5 +252,28 @@ class AddHabitActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun applySavedLanguage() {
+        val sharedPreferences = getSharedPreferences("app_settings", MODE_PRIVATE)
+        val savedLanguage = sharedPreferences.getString("app_language", "en") ?: "en"
+
+        val locale = Locale(savedLanguage)
+        Locale.setDefault(locale)
+
+        val resources = resources
+        val configuration = Configuration(resources.configuration)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            configuration.setLocale(locale)
+        } else {
+            configuration.locale = locale
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            applicationContext.createConfigurationContext(configuration)
+        }
+
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 }

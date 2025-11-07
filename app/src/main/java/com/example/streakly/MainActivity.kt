@@ -4,29 +4,40 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.res.Configuration
+import android.graphics.Color
 import android.graphics.Typeface
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.streakly.data.HabitManager
 import com.example.streakly.entities.Habit
+import com.example.streakly.utils.NetworkMonitor
 import com.example.streakly.utils.ThemeManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import androidx.recyclerview.widget.ItemTouchHelper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.Calendar
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +47,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fabAddHabit: FloatingActionButton
     private lateinit var adapter: HabitAdapter
     private lateinit var toolbar: Toolbar
+    private lateinit var networkMonitor: NetworkMonitor
+    private var offlineStatusView: TextView? = null
+
 
     private val themeChangeReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -46,6 +60,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        applySavedLanguage()
         ThemeManager.applyTheme(this)
         super.onCreate(savedInstanceState)
 
@@ -63,15 +78,21 @@ class MainActivity : AppCompatActivity() {
 
         setupViews()
         setupToolbar()
+        setupOfflineIndicator()
         setupRecyclerView()
         setupSwipeToDelete()
         setupBottomNavigation()
         setupFab()
         observeHabits()
+
+        // Start network monitoring
+        networkMonitor = NetworkMonitor(this)
+        networkMonitor.startMonitoring()
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        networkMonitor.stopMonitoring()
         unregisterReceiver(themeChangeReceiver)
     }
 
@@ -104,10 +125,66 @@ class MainActivity : AppCompatActivity() {
         toolbar.addView(titleView)
     }
 
+    private fun setupOfflineIndicator() {
+        // Create offline status view
+        offlineStatusView = TextView(this).apply {
+            text = "🔴 Offline - Changes will sync when online"
+            setTextColor(Color.RED)
+            textSize = 12f
+            setPadding(16, 8, 16, 8)
+            background = ContextCompat.getDrawable(this@MainActivity, R.drawable.offline_background)
+            visibility = if (HabitManager.isOnline()) View.GONE else View.VISIBLE
+        }
+
+        // Add to toolbar
+        toolbar.addView(offlineStatusView)
+    }
+
+    private fun updateOfflineStatus() {
+        offlineStatusView?.visibility = if (HabitManager.isOnline()) {
+            View.GONE
+        } else {
+            View.VISIBLE
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_sync -> {
+                manualSync()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun manualSync() {
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                HabitManager.syncOfflineActions()
+                val pendingCount = HabitManager.getPendingActionsCount()
+                updateOfflineStatus()
+                if (pendingCount == 0) {
+                    Toast.makeText(this@MainActivity, "All changes synced!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@MainActivity, "Syncing $pendingCount changes...", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this@MainActivity, "Sync failed: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun observeHabits() {
         lifecycleScope.launch {
             HabitManager.getUserHabitsFlow().collectLatest { habits ->
                 updateHabitList(habits)
+                updateOfflineStatus()
             }
         }
     }
@@ -161,6 +238,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         refreshHabits()
+        updateOfflineStatus()
     }
 
 
@@ -245,6 +323,31 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, AddHabitActivity::class.java))
         }
     }
+
+    private fun applySavedLanguage() {
+        val sharedPreferences = getSharedPreferences("app_settings", MODE_PRIVATE)
+        val savedLanguage = sharedPreferences.getString("app_language", "en") ?: "en"
+
+        val locale = Locale(savedLanguage)
+        Locale.setDefault(locale)
+
+        val resources = resources
+        val configuration = Configuration(resources.configuration)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            configuration.setLocale(locale)
+        } else {
+            configuration.locale = locale
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            applicationContext.createConfigurationContext(configuration)
+        }
+
+        resources.updateConfiguration(configuration, resources.displayMetrics)
+    }
+
+
 }
 
 class HabitAdapter(
@@ -436,4 +539,7 @@ class HabitAdapter(
     fun updateHabits(newHabits: List<Habit>) {
         updateHabitsSafely(newHabits)
     }
+
+
+
 }

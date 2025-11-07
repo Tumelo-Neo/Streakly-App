@@ -31,6 +31,16 @@ class FirebaseSyncService {
 
     fun getCurrentUser() = auth.currentUser
 
+    // NEW: Get current user email
+    fun getCurrentUserEmail(): String? {
+        return auth.currentUser?.email
+    }
+
+    // NEW: Get current user display name
+    fun getCurrentUserName(): String? {
+        return auth.currentUser?.displayName
+    }
+
     // Data Sync
     suspend fun syncHabitsToCloud(habits: List<Habit>) {
         val userId = auth.currentUser?.uid ?: return

@@ -8,6 +8,7 @@ class StreaklyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        HabitManager.initialize(this)
         // Initialize HabitManager - it will handle database setup internally
         HabitManager.initialize(this)
 

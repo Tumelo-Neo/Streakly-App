@@ -110,4 +110,19 @@
     <string name="completed">Completed</string>
     <string name="missed">Missed</string>
     <string name="today">Today</string>
+
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="sign_in_with_email">Sign in with Email</string>
+    <string name="or">or</string>
+
+
+    <string name="language">Language</string>
+    <string name="select_language">Select Language</string>
+    <string name="language_changed">Language Changed</string>
+    <string name="restart_app_message">Please restart the app to apply the language change.</string>
+    <string name="english">English</string>
+    <string name="spanish">Español (Spanish)</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="zulu">isiZulu (Zulu)</string>
+
     </resources>

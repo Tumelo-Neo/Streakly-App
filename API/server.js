@@ -185,6 +185,60 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+
+// SSO Login/Create User
+app.post('/api/sso-login', async (req, res) => {
+  try {
+    const { email, name, ssoProvider } = req.body;
+    
+    if (!email) {
+      return res.status(400).json({ error: 'Email is required for SSO' });
+    }
+
+    // Check if user exists
+    const users = await executeQuery('SELECT * FROM users WHERE email = ?', [email]);
+    
+    if (users.length === 0) {
+      // Create new user for SSO
+      const userId = uuidv4();
+      const now = Date.now();
+      const randomPassword = uuidv4(); // Generate random password for SSO users
+      const passwordHash = await bcrypt.hash(randomPassword, 10);
+
+      await executeRun(
+        'INSERT INTO users (id, name, email, passwordHash, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?)',
+        [userId, name || email, email, passwordHash, now, now]
+      );
+
+      const newUsers = await executeQuery(
+        'SELECT id, name, email, createdAt, updatedAt FROM users WHERE id = ?', 
+        [userId]
+      );
+      
+      return res.json({ 
+        success: true, 
+        user: newUsers[0],
+        isNewUser: true 
+      });
+    } else {
+      // Existing user
+      return res.json({ 
+        success: true, 
+        user: { 
+          id: users[0].id, 
+          name: users[0].name, 
+          email: users[0].email,
+          createdAt: users[0].createdAt,
+          updatedAt: users[0].updatedAt
+        },
+        isNewUser: false 
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'SSO login failed: ' + error.message });
+  }
+});
+
 // Get user by ID
 app.get('/api/user/:id', authenticateToken, async (req, res) => {
   try {

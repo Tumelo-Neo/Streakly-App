@@ -134,6 +134,36 @@ class ApiService(private val context: Context) {
         }
     }
 
+    suspend fun ssoLogin(email: String, name: String): User? {
+        val json = JSONObject().apply {
+            put("email", email)
+            put("name", name)
+            put("ssoProvider", "google")
+        }
+
+        val request = Request.Builder()
+            .url("$baseUrl/sso-login")
+            .post(json.toString().toRequestBody("application/json".toMediaType()))
+            .build()
+
+        val response = makeRequest(request)
+        return response?.let {
+            val jsonResponse = JSONObject(it)
+            if (jsonResponse.getBoolean("success")) {
+                val userJson = jsonResponse.getJSONObject("user")
+                User(
+                    id = userJson.getString("id"),
+                    name = userJson.getString("name"),
+                    email = userJson.getString("email"),
+                    passwordHash = "", // Not stored for SSO users
+                    createdAt = userJson.getLong("createdAt"),
+                    updatedAt = userJson.getLong("updatedAt")
+                )
+            } else {
+                null
+            }
+        }
+    }
     // Habit operations
     suspend fun getHabits(userId: String): List<Habit> {
         val request = Request.Builder()

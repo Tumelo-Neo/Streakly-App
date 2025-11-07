@@ -1,7 +1,9 @@
 package com.example.streakly
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +32,7 @@ class HabitDetailActivity : AppCompatActivity() {
     private lateinit var legendContainer: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        applySavedLanguage()
         ThemeManager.applyTheme(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_habit_detail)
@@ -282,6 +285,29 @@ class HabitDetailActivity : AppCompatActivity() {
             updateCompleteButton()
             loadCompletionHistory() // Refresh the calendar
         }
+    }
+
+    private fun applySavedLanguage() {
+        val sharedPreferences = getSharedPreferences("app_settings", MODE_PRIVATE)
+        val savedLanguage = sharedPreferences.getString("app_language", "en") ?: "en"
+
+        val locale = Locale(savedLanguage)
+        Locale.setDefault(locale)
+
+        val resources = resources
+        val configuration = Configuration(resources.configuration)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            configuration.setLocale(locale)
+        } else {
+            configuration.locale = locale
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            applicationContext.createConfigurationContext(configuration)
+        }
+
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 
     data class LegendItem(val label: String, val color: Int)

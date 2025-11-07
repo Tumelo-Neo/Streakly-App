@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
+    android:padding="24dp"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Logo -->
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_streakly_logo"
+            android:layout_marginBottom="24dp" />
+
+        <!-- App Name -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Streakly"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Build Better Habits"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="16sp"
+            android:layout_marginBottom="48dp" />
+
+        <!-- SSO Buttons -->
+        <Button
+            android:id="@+id/btnGoogleSso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Continue with Google"
+            android:textColor="?android:attr/textColorPrimary"
+            android:backgroundTint="?android:attr/colorBackground"
+            android:textSize="16sp"
+            android:drawableStart="@drawable/ic_google"
+            android:drawablePadding="12dp"
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.AppCompat.Button.Borderless" />
+
+        <!-- Divider -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="or"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Traditional Login -->
+        <Button
+            android:id="@+id/btnEmailLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Sign in with Email"
+            android:textColor="@color/white"
+            android:backgroundTint="?attr/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Register -->
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Create New Account"
+            android:textColor="?attr/colorPrimary"
+            android:background="@android:color/transparent"
+            style="@style/Widget.AppCompat.Button.Borderless" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Streakly</string>
+    <string name="home_title">Ikhaya</string>
+    <string name="habits_list_description">Uhlu lwamasiko akho</string>
+    <string name="add_habit_button_description">Engeza isiko elisha</string>
+    <string name="build_better_habits">Yakha Amasiko Amahle</string>
+
+    <!-- Add Habit Screen Strings -->
+    <string name="add_new_habit">Engeza Isiko Elisha</string>
+    <string name="habit_title">Isihloko Sesiko</string>
+    <string name="category">Isigaba (isb. Impilo, Ukufunda, Ukukhiqiza)</string>
+    <string name="frequency">Ubuningi</string>
+    <string name="daily">Nsuku zonke</string>
+    <string name="weekly">Ngesonto</string>
+    <string name="custom">Okwezifiso</string>
+    <string name="reminder_time">Isikhathi Sesikhumbuzi</string>
+    <string name="set_reminder_time">Setha Isikhathi Sesikhumbuzi</string>
+    <string name="start_date">Usuku Lokuqala</string>
+    <string name="select_start_date">Khetha Usuku Lokuqala</string>
+    <string name="notes">Amanothi (okukhethwa kukho)</string>
+    <string name="save_habit">Londoloza Isiko</string>
+    <string name="cancel">Khansela</string>
+
+    <string name="analytics">Izibalo</string>
+    <string name="total_habits">Iziko Eziphelele</string>
+    <string name="completed_today">Kuphelile Namuhla</string>
+    <string name="streak_stats">Izibalo Zomugqa</string>
+    <string name="longest_streak">Umugqa Omude Kunayo Yonke</string>
+    <string name="current_streak">Umugqa Wamanje</string>
+    <string name="total_completions">Ukuqedwa Okuphelele</string>
+    <string name="habit_progress">Intuthuko Yesiko</string>
+    <string name="charts_coming_soon">Amashadi &amp; Izibalo Ezinemininingwane Eziyeza Maduze!</string>
+
+    <string name="days_format">%d izinsuku</string>
+
+    <string name="completion_rate">Izinga Lokuqedwa</string>
+    <string name="weekly_progress">Intuthuko Yesonto</string>
+    <string name="habit_distribution">Ukusatshalaliswa Kweziko</string>
+    <string name="streak_leaderboard">Ibhodi Labaqeqeshi</string>
+    <string name="days">izinsuku</string>
+
+    <string name="placeholder_number">0</string>
+    <string name="placeholder_percentage">0%</string>
+
+    <string name="settings">Izilungiselelo</string>
+    <string name="app_settings">Izilungiselelo Zohlelo</string>
+    <string name="notifications">Izaziso</string>
+    <string name="dark_mode">Indlela Emnyama</string>
+    <string name="data_management">Ukuphathwa Kwedatha</string>
+    <string name="export_data">Khipha Idatha</string>
+    <string name="clear_all_data">Sula Yonke Idatha</string>
+    <string name="about">Mayelana</string>
+    <string name="version">Inguqulo</string>
+    <string name="rate_app">Intuthuko Yakho</string>
+    <string name="data_exported">Idatha ikhishwe ngempumelelo!</string>
+    <string name="clear_data_confirmation">Uqinisekile ukuthi ufisa ukusula yonke idatha? Lokhu akunakuhlehliswa.</string>
+    <string name="data_cleared">Yonke idatha isuliwe.</string>
+
+    <string name="no_habits_message">Awekho amasiko okwamanje!\nThepha inkinobho + ukuze ungeze isiko lakho lokuqala.</string>
+    <string name="habit_completed">%s kuphelile! 🔥</string>
+    <string name="delete_habit">Sula Isiko</string>
+    <string name="delete_habit_confirmation">Sula \"%s\"?</string>
+    <string name="habit_deleted">Isiko sisuliwe</string>
+
+    <!-- Authentication Strings -->
+    <string name="login">Ngena Ngemvume</string>
+    <string name="register">Bhalisa</string>
+    <string name="create_account">Dala I-akhawunti</string>
+    <string name="full_name">Igama Eliphelele</string>
+    <string name="email">I-imeyili</string>
+    <string name="password">Iphasiwedi</string>
+    <string name="confirm_password">Qinisekisa Iphasiwedi</string>
+    <string name="forgot_password">Ukhohliwe iphasiwedi?</string>
+    <string name="already_have_account">Sewunayo i-akhawunti? Ngena Ngemvume</string>
+    <string name="dont_have_account">Awunawo i-akhawunti? Bhalisa</string>
+
+    <string name="export_success">Idatha ikhishwe ngempumelelo! %d amasiko akhishiwe.</string>
+    <string name="clear_data_success">Yonke idatha isuliwe ngempumelelo! %d amasiko asusiwe.</string>
+    <string name="app_stats">Unamaskio angu-%d anemigqa ephelele engu-%d!</string>
+
+    <string name="logout">Phuma</string>
+    <string name="account">I-akhawunti</string>
+    <string name="current_user">Umsebenzisi Wamanje</string>
+
+    <string name="default_web_client_id">AIzaSyBU0fgcZxM0McWvrXmmnbFMDTza43zYNKU</string>
+
+    <string name="habit_completed_toast">Kuphelile: %s! 🔥</string>
+    <string name="modify_completion_message">Sebenzisa imininingwane yesiko ukushintsha ukuqedwa</string>
+
+    <string name="progress_daily">Intuthuko Yansuku Zonke</string>
+    <string name="progress_weekly">Intuthuko Yesonto</string>
+    <string name="progress_custom">Intuthuko Yokuzifisa</string>
+
+    <string name="completion_history">Umlando Wokuqedwa</string>
+    <string name="last_7_days">Izinsuku eziyis-7 ezedlule</string>
+    <string name="last_30_days">Izinsuku ezingamashumi amathathu ezedlule</string>
+    <string name="completion_rate_history">Izinga Lokuqedwa Ngokuhamba Kwesikhathi</string>
+    <string name="no_completion_data">Ayikho idatha yokuqedwa etholakalayo</string>
+
+    <string name="category_distribution">Ukusatshalaliswa Kwesigaba</string>
+    <string name="uncategorized">Akukho sigaba</string>
+    <string name="no_category_data">Ayikho idatha yesigaba etholakalayo</string>
+
+    <string name="month_year_format">%s %d</string>
+    <string name="no_completion_history">Awekho umlando wokuqedwa okwamanje</string>
+    <string name="completed">Kuphelile</string>
+    <string name="missed">Kuphelelwe</string>
+    <string name="today">Namuhla</string>
+
+    <string name="continue_with_google">Qhubeka nge-Google</string>
+    <string name="sign_in_with_email">Ngena ngemeyili</string>
+    <string name="or">noma</string>
+
+    <string name="language">Ulimi</string>
+    <string name="select_language">Khetha Ulimi</string>
+    <string name="language_changed">Ulimi Lushintshiwe</string>
+    <string name="restart_app_message">Sicela uphinde uqalise uhlelo ukuze usebenzise ushintsho lwesiZulu.</string>
+    <string name="english">IsiNgisi</string>
+    <string name="spanish">IsiSpeyini</string>
+    <string name="afrikaans">IsiBhunu</string>
+    <string name="zulu">IsiZulu</string>
+</resources>

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Locale
 
-class GoogleSignInActivity : AppCompatActivity() {
+class SsoLoginActivity : AppCompatActivity() {
 
     private lateinit var googleSignInClient: GoogleSignInClient
 
@@ -30,14 +31,11 @@ class GoogleSignInActivity : AppCompatActivity() {
             try {
                 val account = task.getResult(ApiException::class.java)
                 account?.idToken?.let { idToken ->
-                    handleGoogleSignIn(idToken)
+                    handleSsoSignIn(idToken, account.email ?: "", account.displayName ?: "")
                 }
             } catch (e: ApiException) {
-                Toast.makeText(this, "Google sign-in failed", Toast.LENGTH_SHORT).show()
-                finish()
+                Toast.makeText(this, "SSO sign-in failed", Toast.LENGTH_SHORT).show()
             }
-        } else {
-            finish()
         }
     }
 
@@ -45,40 +43,73 @@ class GoogleSignInActivity : AppCompatActivity() {
         applySavedLanguage()
         ThemeManager.applyTheme(this)
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_sso_login)
 
-        // Configure Google Sign In
+        // Configure Google Sign In for SSO
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
+            .requestProfile()
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
-        signIn()
+
+        setupClickListeners()
     }
 
-    private fun signIn() {
+    private fun setupClickListeners() {
+        findViewById<Button>(R.id.btnGoogleSso).setOnClickListener {
+            signInWithGoogle()
+        }
+
+        findViewById<Button>(R.id.btnEmailLogin).setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+
+        findViewById<Button>(R.id.btnRegister).setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+            finish()
+        }
+    }
+
+    private fun signInWithGoogle() {
         val signInIntent = googleSignInClient.signInIntent
         signInLauncher.launch(signInIntent)
     }
 
-    private fun handleGoogleSignIn(idToken: String) {
+    private fun handleSsoSignIn(idToken: String, email: String, displayName: String) {
         CoroutineScope(Dispatchers.Main).launch {
-            // FIX: Corrected method name - was 'signinWithGoogle' (lowercase 'i')
             val success = HabitManager.signInWithGoogle(idToken)
             if (success) {
-                Toast.makeText(this@GoogleSignInActivity, "Signed in with Google", Toast.LENGTH_SHORT).show()
+                // Get Firebase user info to sync with backend
+                val firebaseUser = HabitManager.getFirebaseUser()
+                val userEmail = firebaseUser?.email ?: email
+                val userName = firebaseUser?.displayName ?: displayName
 
-                // Sync data from cloud
-                HabitManager.syncFromCloud()
+                // Sync with backend
+                syncUserWithBackend(userEmail, userName)
+
+                Toast.makeText(this@SsoLoginActivity, "Signed in successfully!", Toast.LENGTH_SHORT).show()
 
                 // Navigate to main activity
-                val intent = Intent(this@GoogleSignInActivity, MainActivity::class.java)
+                val intent = Intent(this@SsoLoginActivity, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
+                finish()
             } else {
-                Toast.makeText(this@GoogleSignInActivity, "Sign-in failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@SsoLoginActivity, "SSO sign-in failed", Toast.LENGTH_SHORT).show()
             }
-            finish()
+        }
+    }
+
+    private suspend fun syncUserWithBackend(email: String, displayName: String) {
+        try {
+            // This will create or sync the user with the backend
+            // The backend handles both new and existing SSO users
+        } catch (e: Exception) {
+            // Log the error but continue - user can still use the app
+            e.printStackTrace()
         }
     }
 

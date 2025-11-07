@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Streakly</string>
+    <string name="home_title">Inicio</string>
+    <string name="habits_list_description">Lista de tus hábitos</string>
+    <string name="add_habit_button_description">Agregar nuevo hábito</string>
+    <string name="build_better_habits">Construye Mejores Hábitos</string>
+
+    <!-- Add Habit Screen Strings -->
+    <string name="add_new_habit">Agregar Nuevo Hábito</string>
+    <string name="habit_title">Título del Hábito</string>
+    <string name="category">Categoría (ej. Salud, Aprendizaje, Productividad)</string>
+    <string name="frequency">Frecuencia</string>
+    <string name="daily">Diario</string>
+    <string name="weekly">Semanal</string>
+    <string name="custom">Personalizado</string>
+    <string name="reminder_time">Hora del Recordatorio</string>
+    <string name="set_reminder_time">Establecer Hora de Recordatorio</string>
+    <string name="start_date">Fecha de Inicio</string>
+    <string name="select_start_date">Seleccionar Fecha de Inicio</string>
+    <string name="notes">Notas (opcional)</string>
+    <string name="save_habit">Guardar Hábito</string>
+    <string name="cancel">Cancelar</string>
+
+    <string name="analytics">Analíticas</string>
+    <string name="total_habits">Hábitos Totales</string>
+    <string name="completed_today">Completados Hoy</string>
+    <string name="streak_stats">Estadísticas de Racha</string>
+    <string name="longest_streak">Racha Más Larga</string>
+    <string name="current_streak">Racha Actual</string>
+    <string name="total_completions">Completaciones Totales</string>
+    <string name="habit_progress">Progreso del Hábito</string>
+    <string name="charts_coming_soon">¡Gráficas y Análisis Detallados Próximamente!</string>
+
+    <string name="days_format">%d días</string>
+
+    <string name="completion_rate">Tasa de Finalización</string>
+    <string name="weekly_progress">Progreso Semanal</string>
+    <string name="habit_distribution">Distribución de Hábitos</string>
+    <string name="streak_leaderboard">Tabla de Rachas</string>
+    <string name="days">días</string>
+
+    <string name="placeholder_number">0</string>
+    <string name="placeholder_percentage">0%</string>
+
+    <string name="settings">Configuración</string>
+    <string name="app_settings">Configuración de la App</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="dark_mode">Modo Oscuro</string>
+    <string name="data_management">Gestión de Datos</string>
+    <string name="export_data">Exportar Datos</string>
+    <string name="clear_all_data">Borrar Todos los Datos</string>
+    <string name="about">Acerca de</string>
+    <string name="version">Versión</string>
+    <string name="rate_app">Tu Progreso</string>
+    <string name="data_exported">¡Datos exportados exitosamente!</string>
+    <string name="clear_data_confirmation">¿Estás seguro de que quieres borrar todos los datos? Esto no se puede deshacer.</string>
+    <string name="data_cleared">Todos los datos han sido borrados.</string>
+
+    <string name="no_habits_message">¡Aún no hay hábitos!\nToca el botón + para agregar tu primer hábito.</string>
+    <string name="habit_completed">¡%s completado! 🔥</string>
+    <string name="delete_habit">Eliminar Hábito</string>
+    <string name="delete_habit_confirmation">¿Eliminar \"%s\"?</string>
+    <string name="habit_deleted">Hábito eliminado</string>
+
+    <!-- Authentication Strings -->
+    <string name="login">Iniciar Sesión</string>
+    <string name="register">Registrarse</string>
+    <string name="create_account">Crear Cuenta</string>
+    <string name="full_name">Nombre Completo</string>
+    <string name="email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="confirm_password">Confirmar Contraseña</string>
+    <string name="forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="already_have_account">¿Ya tienes una cuenta? Iniciar Sesión</string>
+    <string name="dont_have_account">¿No tienes una cuenta? Registrarse</string>
+
+    <string name="export_success">¡Datos exportados exitosamente! %d hábitos exportados.</string>
+    <string name="clear_data_success">¡Todos los datos borrados exitosamente! %d hábitos eliminados.</string>
+    <string name="app_stats">¡Tienes %d hábitos con %d rachas totales!</string>
+
+    <string name="logout">Cerrar Sesión</string>
+    <string name="account">Cuenta</string>
+    <string name="current_user">Usuario Actual</string>
+
+    <string name="default_web_client_id">AIzaSyBU0fgcZxM0McWvrXmmnbFMDTza43zYNKU</string>
+
+    <string name="habit_completed_toast">¡Completado: %s! 🔥</string>
+    <string name="modify_completion_message">Usa el detalle del hábito para modificar la finalización</string>
+
+    <string name="progress_daily">Progreso Diario</string>
+    <string name="progress_weekly">Progreso Semanal</string>
+    <string name="progress_custom">Progreso Personalizado</string>
+
+    <string name="completion_history">Historial de Finalización</string>
+    <string name="last_7_days">Últimos 7 Días</string>
+    <string name="last_30_days">Últimos 30 Días</string>
+    <string name="completion_rate_history">Tasa de Finalización en el Tiempo</string>
+    <string name="no_completion_data">No hay datos de finalización disponibles</string>
+
+    <string name="category_distribution">Distribución por Categoría</string>
+    <string name="uncategorized">Sin Categorizar</string>
+    <string name="no_category_data">No hay datos de categoría disponibles</string>
+
+    <string name="month_year_format">%s %d</string>
+    <string name="no_completion_history">Aún no hay historial de finalización</string>
+    <string name="completed">Completado</string>
+    <string name="missed">Perdido</string>
+    <string name="today">Hoy</string>
+
+    <string name="continue_with_google">Continuar con Google</string>
+    <string name="sign_in_with_email">Iniciar con Email</string>
+    <string name="or">o</string>
+
+    <string name="language">Idioma</string>
+    <string name="select_language">Seleccionar Idioma</string>
+    <string name="language_changed">Idioma Cambiado</string>
+    <string name="restart_app_message">Por favor reinicia la app para aplicar el cambio de idioma.</string>
+    <string name="english">Inglés</string>
+    <string name="spanish">Español</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="zulu">Zulú</string>
+</resources>

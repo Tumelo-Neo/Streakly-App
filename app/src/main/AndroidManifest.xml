@@ -80,6 +80,14 @@
             android:name=".GoogleSignInActivity"
             android:exported="false"
             android:theme="@style/Theme.Streakly" />
+        <activity
+            android:name=".SsoLoginActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Streakly" />
+
+        <meta-data
+            android:name="com.google.android.gms.auth.api.identity.SERVER_CLIENT_ID"
+            android:value="@string/default_web_client_id" />
 
     </application>
 </manifest>

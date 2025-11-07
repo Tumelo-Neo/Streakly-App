@@ -55,6 +55,43 @@
                         android:padding="16dp"
                         android:paddingBottom="8dp" />
 
+                    <!-- Language Selection -->
+                    <LinearLayout
+                        android:id="@+id/btnLanguage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_language"
+                            android:layout_marginEnd="16dp"
+                            app:tint="?attr/colorPrimary" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Language / Idioma / Taal / Ulimi"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="16sp"
+                            android:gravity="center_vertical" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_arrow_forward"
+                            app:tint="?android:attr/textColorSecondary" />
+
+                    </LinearLayout>
+
                     <!-- Notifications -->
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -264,6 +301,55 @@
                         android:textStyle="bold"
                         android:padding="16dp"
                         android:paddingBottom="8dp" />
+
+
+                    <!-- Added inside the Data Management CardView -->
+                    <LinearLayout
+                        android:id="@+id/btnManualSync"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingBottom="8dp">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_sync"
+                                android:layout_marginEnd="16dp"
+                                app:tint="?attr/colorPrimary" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Sync Now"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="16sp"
+                                android:gravity="center_vertical" />
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/tvOfflineStatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Online - All changes synced"
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="12sp"
+                            android:paddingStart="40dp" />
+
+                    </LinearLayout>
 
                     <!-- Export Data -->
                     <LinearLayout

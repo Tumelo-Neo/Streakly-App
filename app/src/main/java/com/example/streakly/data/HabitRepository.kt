@@ -65,4 +65,8 @@ class HabitRepository(private val context: Context) {
     suspend fun getUserStats(userId: String): Map<String, Int> {
         return apiService.getUserStats(userId)
     }
+
+    suspend fun ssoLogin(email: String, name: String): User? {
+        return apiService.ssoLogin(email, name)
+    }
 }

@@ -18,6 +18,7 @@ object HabitManager {
     private var sessionManager: SessionManager? = null
     private var firebaseSyncService: FirebaseSyncService? = null
     private val ioScope = CoroutineScope(Dispatchers.IO)
+    private var offlineManager: OfflineManager? = null
 
     fun initialize(context: Context) {
         repository = HabitRepository(context)
@@ -75,14 +76,36 @@ object HabitManager {
         }
     }
 
+    fun initializeOfflineManager(context: Context) {
+        offlineManager = OfflineManager(context)
+    }
+
     fun deleteHabit(habitId: String) {
         val userId = getCurrentUserId()
         if (userId != null) {
-            ioScope.launch {
-                repository?.deleteHabitById(habitId, userId)
-                cancelHabitReminder(habitId)
-                if (isCloudSyncEnabled()) {
-                    syncToCloud()
+            val isOnline = offlineManager?.isOnline() ?: true
+
+            if (isOnline) {
+                // Online: Delete directly
+                ioScope.launch {
+                    repository?.deleteHabitById(habitId, userId)
+                    cancelHabitReminder(habitId)
+                    if (isCloudSyncEnabled()) {
+                        syncToCloud()
+                    }
+                }
+            } else {
+                // Offline: Add to queue
+                val actionData = mapOf(
+                    "habitId" to habitId,
+                    "userId" to userId
+                )
+                offlineManager?.addOfflineAction("DELETE_HABIT", actionData)
+
+                // Also delete from local database for immediate UI update
+                ioScope.launch {
+                    repository?.deleteHabitById(habitId, userId)
+                    cancelHabitReminder(habitId)
                 }
             }
         }
@@ -100,8 +123,25 @@ object HabitManager {
     fun markHabitCompleted(habitId: String) {
         val userId = getCurrentUserId()
         if (userId != null) {
-            ioScope.launch {
-                repository?.markHabitCompleted(habitId, userId)
+            val isOnline = offlineManager?.isOnline() ?: true
+
+            if (isOnline) {
+                // Online: Mark complete directly
+                ioScope.launch {
+                    repository?.markHabitCompleted(habitId, userId)
+                }
+            } else {
+                // Offline: Add to queue
+                val actionData = mapOf(
+                    "habitId" to habitId,
+                    "userId" to userId
+                )
+                offlineManager?.addOfflineAction("COMPLETE_HABIT", actionData)
+
+                // Also mark complete in local database for immediate UI update
+                ioScope.launch {
+                    repository?.markHabitCompleted(habitId, userId)
+                }
             }
         }
     }
@@ -147,14 +187,60 @@ object HabitManager {
         }
     }
 
+    suspend fun syncOfflineActions() {
+        offlineManager?.processOfflineQueue()
+    }
+
+    fun setOnlineStatus(isOnline: Boolean) {
+        offlineManager?.setOnlineStatus(isOnline)
+    }
+
+
+    fun isOnline(): Boolean {
+        return offlineManager?.isOnline() ?: true
+    }
+
+    fun getPendingActionsCount(): Int {
+        return offlineManager?.getPendingActionsCount() ?: 0
+    }
+
     fun addHabit(habit: Habit) {
         val userId = getCurrentUserId()
         if (userId != null) {
-            ioScope.launch {
-                repository?.insertHabit(habit, userId)
-                scheduleHabitReminder(habit)
-                if (isCloudSyncEnabled()) {
-                    syncToCloud()
+            val isOnline = offlineManager?.isOnline() ?: true
+
+            if (isOnline) {
+                // Online: Add directly
+                ioScope.launch {
+                    repository?.insertHabit(habit, userId)
+                    scheduleHabitReminder(habit)
+                    if (isCloudSyncEnabled()) {
+                        syncToCloud()
+                    }
+                }
+            } else {
+                // Offline: Add to queue
+                val actionData = mapOf(
+                    "id" to habit.id,
+                    "userId" to userId,
+                    "title" to habit.title,
+                    "category" to habit.category,
+                    "frequency" to habit.frequency,
+                    "selectedDays" to habit.selectedDays,
+                    "reminderTime" to (habit.reminderTime ?: ""),
+                    "startDate" to habit.startDate,
+                    "notes" to habit.notes,
+                    "streakCount" to habit.streakCount,
+                    "lastCompleted" to (habit.lastCompleted ?: ""),
+                    "createdAt" to habit.createdAt,
+                    "updatedAt" to habit.updatedAt
+                )
+                offlineManager?.addOfflineAction("CREATE_HABIT", actionData)
+
+                // Also add to local database for immediate UI update
+                ioScope.launch {
+                    repository?.insertHabit(habit, userId)
+                    scheduleHabitReminder(habit)
                 }
             }
         }
@@ -163,15 +249,45 @@ object HabitManager {
     fun updateHabit(updatedHabit: Habit) {
         val userId = getCurrentUserId()
         if (userId != null) {
-            ioScope.launch {
-                repository?.updateHabit(updatedHabit.copy(updatedAt = System.currentTimeMillis()), userId)
-                scheduleHabitReminder(updatedHabit)
-                if (isCloudSyncEnabled()) {
-                    syncToCloud()
+            val isOnline = offlineManager?.isOnline() ?: true
+
+            if (isOnline) {
+                // Online: Update directly
+                ioScope.launch {
+                    repository?.updateHabit(updatedHabit.copy(updatedAt = System.currentTimeMillis()), userId)
+                    scheduleHabitReminder(updatedHabit)
+                    if (isCloudSyncEnabled()) {
+                        syncToCloud()
+                    }
+                }
+            } else {
+                // Offline: Add to queue
+                val actionData = mapOf(
+                    "id" to updatedHabit.id,
+                    "userId" to userId,
+                    "title" to updatedHabit.title,
+                    "category" to updatedHabit.category,
+                    "frequency" to updatedHabit.frequency,
+                    "selectedDays" to updatedHabit.selectedDays,
+                    "reminderTime" to (updatedHabit.reminderTime ?: ""),
+                    "startDate" to updatedHabit.startDate,
+                    "notes" to updatedHabit.notes,
+                    "streakCount" to updatedHabit.streakCount,
+                    "lastCompleted" to (updatedHabit.lastCompleted ?: ""),
+                    "createdAt" to updatedHabit.createdAt,
+                    "updatedAt" to System.currentTimeMillis()
+                )
+                offlineManager?.addOfflineAction("UPDATE_HABIT", actionData)
+
+                // Also update local database for immediate UI update
+                ioScope.launch {
+                    repository?.updateHabit(updatedHabit.copy(updatedAt = System.currentTimeMillis()), userId)
+                    scheduleHabitReminder(updatedHabit)
                 }
             }
         }
     }
+
 
     fun cancelHabitReminder(habitId: String) {
         val context = getContext()
@@ -183,6 +299,8 @@ object HabitManager {
     fun isCloudSyncEnabled(): Boolean {
         return firebaseSyncService?.getCurrentUser() != null
     }
+
+
 
     suspend fun syncToCloud() {
         if (!isCloudSyncEnabled()) return

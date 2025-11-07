@@ -28,6 +28,8 @@ class CalendarView @JvmOverloads constructor(
     private var headerHeight = 0f
     private var dayHeaderHeight = 0f
 
+
+
     private val dayHeaders = arrayOf("S", "M", "T", "W", "T", "F", "S")
     private val monthNames = arrayOf(
         "January", "February", "March", "April", "May", "June",

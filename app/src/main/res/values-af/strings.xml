@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Streakly</string>
+    <string name="home_title">Tuis</string>
+    <string name="habits_list_description">Lys van jou gewoontes</string>
+    <string name="add_habit_button_description">Voeg nuwe gewoonte by</string>
+    <string name="build_better_habits">Bou Beter Gewoontes</string>
+
+    <!-- Add Habit Screen Strings -->
+    <string name="add_new_habit">Voeg Nuwe Gewoonte By</string>
+    <string name="habit_title">Gewoonte Titel</string>
+    <string name="category">Kategorie (bv. Gesondheid, Leer, Produktiwiteit)</string>
+    <string name="frequency">Frekwensie</string>
+    <string name="daily">Daagliks</string>
+    <string name="weekly">Weekliks</string>
+    <string name="custom">Aangepas</string>
+    <string name="reminder_time">Herinnering Tyd</string>
+    <string name="set_reminder_time">Stel Herinnering Tyd</string>
+    <string name="start_date">Begin Datum</string>
+    <string name="select_start_date">Kies Begin Datum</string>
+    <string name="notes">Notas (opsioneel)</string>
+    <string name="save_habit">Stoor Gewoonte</string>
+    <string name="cancel">Kanselleer</string>
+
+    <string name="analytics">Analise</string>
+    <string name="total_habits">Totale Gewoontes</string>
+    <string name="completed_today">Vandag Voltooi</string>
+    <string name="streak_stats">Streep Statistieke</string>
+    <string name="longest_streak">Langste Streep</string>
+    <string name="current_streak">Huidige Streep</string>
+    <string name="total_completions">Totale Voltooiings</string>
+    <string name="habit_progress">Gewoonte Vordering</string>
+    <string name="charts_coming_soon">Grafieke &amp; Gedetailleerde Analise Kom Binnekort!</string>
+
+    <string name="days_format">%d dae</string>
+
+    <string name="completion_rate">Voltooiingsyfer</string>
+    <string name="weekly_progress">Weeklikse Vordering</string>
+    <string name="habit_distribution">Gewoonte Verspreiding</string>
+    <string name="streak_leaderboard">Streep Ranglys</string>
+    <string name="days">dae</string>
+
+    <string name="placeholder_number">0</string>
+    <string name="placeholder_percentage">0%</string>
+
+    <string name="settings">Instellings</string>
+    <string name="app_settings">App Instellings</string>
+    <string name="notifications">Kennisgewings</string>
+    <string name="dark_mode">Donker Modus</string>
+    <string name="data_management">Data Bestuur</string>
+    <string name="export_data">Voer Data Uit</string>
+    <string name="clear_all_data">Vee Alle Data Uit</string>
+    <string name="about">Oor</string>
+    <string name="version">Weergawe</string>
+    <string name="rate_app">Jou Vordering</string>
+    <string name="data_exported">Data suksesvol uitgevoer!</string>
+    <string name="clear_data_confirmation">Is jy seker jy wil alle data uitvee? Dit kan nie ongedaan gemaak word nie.</string>
+    <string name="data_cleared">Alle data is uitgevee.</string>
+
+    <string name="no_habits_message">Nog geen gewoontes nie!\nTik op die + knoppie om jou eerste gewoonte by te voeg.</string>
+    <string name="habit_completed">%s voltooi! 🔥</string>
+    <string name="delete_habit">Vee Gewoonte Uit</string>
+    <string name="delete_habit_confirmation">Vee \"%s\" uit?</string>
+    <string name="habit_deleted">Gewoonte uitgevee</string>
+
+    <!-- Authentication Strings -->
+    <string name="login">Teken In</string>
+    <string name="register">Registreer</string>
+    <string name="create_account">Skep Rekening</string>
+    <string name="full_name">Volle Naam</string>
+    <string name="email">E-pos</string>
+    <string name="password">Wagwoord</string>
+    <string name="confirm_password">Bevestig Wagwoord</string>
+    <string name="forgot_password">Wagwoord vergeet?</string>
+    <string name="already_have_account">Het jy reeds \'n rekening? Teken In</string>
+    <string name="dont_have_account">Het jy nie \'n rekening nie? Registreer</string>
+
+    <string name="export_success">Data suksesvol uitgevoer! %d gewoontes uitgevoer.</string>
+    <string name="clear_data_success">Alle data suksesvol uitgevee! %d gewoontes verwyder.</string>
+    <string name="app_stats">Jy het %d gewoontes met %d totale strepe!</string>
+
+    <string name="logout">Teken Uit</string>
+    <string name="account">Rekening</string>
+    <string name="current_user">Huidige Gebruiker</string>
+
+    <string name="default_web_client_id">AIzaSyBU0fgcZxM0McWvrXmmnbFMDTza43zYNKU</string>
+
+    <string name="habit_completed_toast">Voltooi: %s! 🔥</string>
+    <string name="modify_completion_message">Gebruik gewoonte detail om voltooiing te verander</string>
+
+    <string name="progress_daily">Daaglikse Vordering</string>
+    <string name="progress_weekly">Weeklikse Vordering</string>
+    <string name="progress_custom">Aangepaste Vordering</string>
+
+    <string name="completion_history">Voltooiingsgeskiedenis</string>
+    <string name="last_7_days">Laaste 7 Dae</string>
+    <string name="last_30_days">Laaste 30 Dae</string>
+    <string name="completion_rate_history">Voltooiingsyfer Oor Tyd</string>
+    <string name="no_completion_data">Geen voltooiingsdata beskikbaar</string>
+
+    <string name="category_distribution">Kategorie Verspreiding</string>
+    <string name="uncategorized">Ongekategoriseer</string>
+    <string name="no_category_data">Geen kategoriedata beskikbaar</string>
+
+    <string name="month_year_format">%s %d</string>
+    <string name="no_completion_history">Nog geen voltooiingsgeskiedenis nie</string>
+    <string name="completed">Voltooi</string>
+    <string name="missed">Gemis</string>
+    <string name="today">Vandag</string>
+
+    <string name="continue_with_google">Gaan voort met Google</string>
+    <string name="sign_in_with_email">Teken in met E-pos</string>
+    <string name="or">of</string>
+
+    <string name="language">Taal</string>
+    <string name="select_language">Kies Taal</string>
+    <string name="language_changed">Taal Verander</string>
+    <string name="restart_app_message">Herbegin die app om die taalverandering toe te pas.</string>
+    <string name="english">Engels</string>
+    <string name="spanish">Spaans</string>
+    <string name="afrikaans">Afrikaans</string>
+    <string name="zulu">Zoeloe</string>
+</resources>
