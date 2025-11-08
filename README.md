@@ -389,5 +389,9 @@ For existing users from the prototype version:
 - Web dashboard for comprehensive habit analysis
 
 ---
+Developers: Ntsako Vicario Maswanganyi (st10220315) 
 
+            Tumelo Neo Mahlaela (st10317649) 
+
+            Ponani Kevin Chamango (st10057836) 
 *For detailed technical documentation, please refer to the [Project Wiki](https://github.com/your-username/streakly-android/wiki)*
