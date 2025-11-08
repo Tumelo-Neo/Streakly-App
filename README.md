@@ -162,6 +162,7 @@ jobs:
 ---
 
 # Streakly - Build Better Habits 📱
+
 <img width="284" height="631" alt="image" src="https://github.com/user-attachments/assets/0869c3e5-98df-4dde-941c-1cc14163e509" />
 
 [![Android CI](https://github.com/your-username/streakly-android/actions/workflows/android-ci.yml/badge.svg)](https://github.com/your-username/streakly-android/actions)
@@ -183,25 +184,41 @@ jobs:
 
 ### Core Functionality
 - **Habit Creation & Management**: Create habits with custom frequencies (daily, weekly, custom days)
+  
   <img width="569" height="629" alt="image" src="https://github.com/user-attachments/assets/d676edd1-4a8b-46c3-8f34-f73698920651" />
+
 - **Streak Tracking**: Visual progress indicators and streak counters
+  
   <img width="566" height="629" alt="image" src="https://github.com/user-attachments/assets/e1dc69f3-9d8e-47ef-9a3f-5f7f3f995921" /> <img width="288" height="626" alt="image" src="https://github.com/user-attachments/assets/d98447c0-e11f-498a-9928-58a305192164" />
+  
 - **Smart Reminders**: Customizable notification system with exact alarm permissions
 - **Progress Analytics**: Comprehensive charts and completion statistics
+  
   <img width="284" height="629" alt="image" src="https://github.com/user-attachments/assets/9427be4f-2dae-4065-8757-9e6d2973826e" />
+  
 - **Multi-language Support**: English, Spanish, Afrikaans, and Zulu
+- 
   <img width="285" height="630" alt="image" src="https://github.com/user-attachments/assets/0ab3e5f2-48c8-4f33-ba00-4f2f5cc0a36c" />
 
 ### Advanced Features
 - **Offline Mode**: Full functionality without internet connection
+  
   <img width="286" height="629" alt="image" src="https://github.com/user-attachments/assets/29d41774-da81-4d8d-b2a9-657bd8366a5c" />
+  
 - **Cloud Synchronization**: Firebase integration for cross-device sync
+- 
   <img width="283" height="629" alt="image" src="https://github.com/user-attachments/assets/587aaa85-941f-4bcd-8ec3-1bcc49f391db" />
+  
 - **Single Sign-On**: Google authentication support
+  
   <img width="567" height="628" alt="image" src="https://github.com/user-attachments/assets/111c37c4-7fad-4cad-8c17-14f9bf666c3e" />
+  
 - **Data Export**: CSV export functionality for personal analytics
+  
   <img width="285" height="628" alt="image" src="https://github.com/user-attachments/assets/64422615-d925-401e-b778-ac5f43ddc03c" />
+  
 - **Dark/Light Theme**: Automatic theme switching based on system preferences
+  
   <img width="570" height="625" alt="image" src="https://github.com/user-attachments/assets/32435ca7-1648-4f4b-b730-907ef08dd59d" />
   
 ### Technical Excellence
